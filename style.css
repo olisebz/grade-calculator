@@ -1,0 +1,252 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Segoe UI', sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #2E6F40;
+    margin-bottom: 25px;
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.calculator-wrapper {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: 0 20px 60px rgba(46, 111, 64, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(46, 111, 64, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+}
+
+thead {
+    background: linear-gradient(135deg, #2E6F40 0%, #3d8a54 100%);
+    color: white;
+}
+
+th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+th:first-child {
+    width: 70px;
+}
+
+th:nth-child(2) {
+    width: auto;
+}
+
+th:nth-child(3) {
+    width: 200px;
+}
+
+th:last-child {
+    width: 120px;
+    text-align: center;
+}
+
+tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+td {
+    padding: 10px 15px;
+}
+
+td:first-child {
+    color: #2E6F40;
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+td:last-child {
+    text-align: center;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 2px solid #e8e8e8;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+input[type="number"]:hover {
+    background-color: #ffffff;
+    border-color: #d0d0d0;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #2E6F40;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(46, 111, 64, 0.1);
+}
+
+.delete-btn {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.delete-btn:hover {
+    background-color: #ff1f1f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 77, 79, 0.3);
+}
+
+.delete-btn:active {
+    transform: translateY(0);
+}
+
+.add-btn {
+    width: calc(100% - 30px);
+    margin: 15px 15px;
+    padding: 10px;
+    background: linear-gradient(135deg, #2E6F40 0%, #3d8a54 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(46, 111, 64, 0.2);
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 111, 64, 0.3);
+}
+
+.add-btn:active {
+    transform: translateY(0);
+}
+
+.result-section {
+    background: linear-gradient(135deg, #f0f9f4 0%, #e8f5e9 100%);
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    border: 2px solid rgba(46, 111, 64, 0.2);
+}
+
+.result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1em;
+}
+
+.result span:first-child {
+    color: #2E6F40;
+    font-weight: 600;
+}
+
+.result span:last-child {
+    color: #2E6F40;
+    font-weight: 800;
+    font-size: 1.6em;
+    letter-spacing: -1px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 10px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    table {
+        font-size: 12px;
+    }
+    
+    th, td {
+        padding: 8px 5px;
+    }
+    
+    th:first-child {
+        width: 40px;
+    }
+    
+    th:nth-child(2) {
+        width: 50%;
+    }
+    
+    th:nth-child(3) {
+        width: 30%;
+    }
+    
+    th:last-child {
+        width: 80px;
+    }
+    
+    input[type="number"] {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+    
+    .delete-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    
+    .result-section {
+        padding: 15px;
+    }
+    
+    .result {
+        font-size: 0.9em;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .result span:last-child {
+        font-size: 1.4em;
+    }
+}
