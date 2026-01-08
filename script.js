@@ -21,12 +21,12 @@ function addGrade() {
     renderGrades();
 }
 
-// Clear a grade
+// Delete a grade
 function deleteGrade(id) {
-    const grade = grades.find(g => g.id === id);
-    if (grade) {
-        grade.value = '';
-        grade.percentage = 100;
+    grades = grades.filter(g => g.id !== id);
+    if (grades.length === 0) {
+        addGrade(); // Keep at least one empty row
+    } else {
         renderGrades();
     }
 }
@@ -101,19 +101,21 @@ function calculateFinalGrade() {
     }
     
     let totalWeightedGrade = 0;
-    let totalPercentage = 0;
+    let totalWeight = 0;
     
     validGrades.forEach(grade => {
-        totalWeightedGrade += grade.value * grade.percentage;
-        totalPercentage += grade.percentage;
+        // Convert percentage (0-100) to weight (0-1)
+        const weight = grade.percentage / 100;
+        totalWeightedGrade += grade.value * weight;
+        totalWeight += weight;
     });
     
-    if (totalPercentage === 0) {
+    if (totalWeight === 0) {
         document.getElementById('finalGrade').textContent = '-';
         return;
     }
     
-    const finalGrade = totalWeightedGrade / totalPercentage;
+    const finalGrade = totalWeightedGrade / totalWeight;
     document.getElementById('finalGrade').textContent = finalGrade.toFixed(2);
     
     // Recalculate required grade if target is set
@@ -125,7 +127,8 @@ function calculateRequiredGrade() {
     const targetInput = document.getElementById('targetGrade');
     const weightInput = document.getElementById('targetWeight');
     const targetGrade = parseFloat(targetInput.value);
-    const nextWeight = parseFloat(weightInput.value) || 100;
+    const nextWeightPercent = parseFloat(weightInput.value) || 100;
+    const nextWeight = nextWeightPercent / 100; // Convert to decimal
     const requiredSection = document.getElementById('requiredGradeSection');
     const requiredGradeSpan = document.getElementById('requiredGrade');
     
@@ -143,25 +146,36 @@ function calculateRequiredGrade() {
         return;
     }
     
-    // Calculate current weighted sum and total percentage
+    // Calculate current weighted sum and total weight
     let totalWeightedGrade = 0;
-    let totalPercentage = 0;
+    let totalWeight = 0;
     
     validGrades.forEach(grade => {
-        totalWeightedGrade += grade.value * grade.percentage;
-        totalPercentage += grade.percentage;
+        const weight = grade.percentage / 100;
+        totalWeightedGrade += grade.value * weight;
+        totalWeight += weight;
     });
     
-    // Formula: (current_weighted + required*weight) / (total_percentage + weight) = target
-    // Solve for required: required = (target * (total_percentage + weight) - current_weighted) / weight
-    const requiredGrade = (targetGrade * (totalPercentage + nextWeight) - totalWeightedGrade) / nextWeight;
+    const currentFinalGrade = totalWeightedGrade / totalWeight;
+    
+    // Check if target is already achieved (Swiss grading: higher is better)
+    if (currentFinalGrade >= targetGrade) {
+        requiredSection.style.display = 'flex';
+        requiredGradeSpan.textContent = 'Already achieved!';
+        requiredGradeSpan.style.color = '#2E6F40';
+        return;
+    }
+    
+    // Formula: (current_weighted + required*nextWeight) / (totalWeight + nextWeight) = target
+    // Solve for required: required = (target * (totalWeight + nextWeight) - current_weighted) / nextWeight
+    const requiredGrade = (targetGrade * (totalWeight + nextWeight) - totalWeightedGrade) / nextWeight;
     
     requiredSection.style.display = 'flex';
     
-    if (requiredGrade < 1) {
+    if (requiredGrade > 6) {
         requiredGradeSpan.textContent = 'Already achieved!';
         requiredGradeSpan.style.color = '#2E6F40';
-    } else if (requiredGrade > 6) {
+    } else if (requiredGrade < 1) {
         requiredGradeSpan.textContent = 'Not achievable';
         requiredGradeSpan.style.color = '#ff4d4f';
     } else {
