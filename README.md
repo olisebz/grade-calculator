@@ -2,6 +2,8 @@
 
 A simple web calculator for weighted grades.
 
+🌐 **Live Demo:** https://olisebz.github.io/grade-calculator/
+
 ## Features
 
 - Calculate weighted grade averages
