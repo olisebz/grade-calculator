@@ -173,8 +173,8 @@ function calculateRequiredGrade() {
     requiredSection.style.display = 'flex';
     
     if (requiredGrade > 6) {
-        requiredGradeSpan.textContent = 'Already achieved!';
-        requiredGradeSpan.style.color = '#2E6F40';
+        requiredGradeSpan.textContent = 'Not achievable';
+        requiredGradeSpan.style.color = '#ff4d4f';
     } else if (requiredGrade < 1) {
         requiredGradeSpan.textContent = 'Not achievable';
         requiredGradeSpan.style.color = '#ff4d4f';
