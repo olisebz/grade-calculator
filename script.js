@@ -167,6 +167,47 @@ function calculateRequiredGrade() {
     }
 }
 
+// Calculate grade from points
+function calculateGradeFromPoints() {
+    const maxPoints = parseFloat(document.getElementById('maxPoints').value);
+    const achievedPoints = parseFloat(document.getElementById('achievedPoints').value);
+    const resultSpan = document.getElementById('calculatedGrade');
+    
+    // Validate inputs
+    if (!maxPoints || !achievedPoints || isNaN(maxPoints) || isNaN(achievedPoints)) {
+        resultSpan.textContent = '-';
+        resultSpan.style.color = '#333';
+        return;
+    }
+    
+    if (maxPoints <= 0) {
+        resultSpan.textContent = 'Invalid max points';
+        resultSpan.style.color = '#ff4d4f';
+        return;
+    }
+    
+    if (achievedPoints < 0) {
+        resultSpan.textContent = 'Invalid points';
+        resultSpan.style.color = '#ff4d4f';
+        return;
+    }
+    
+    // Formula: Note = (erreichtePunktzahl * 5) / MAXPUNKTZAHL + 1
+    const grade = (achievedPoints * 5) / maxPoints + 1;
+    
+    // Display result
+    if (grade > 6) {
+        resultSpan.textContent = grade.toFixed(2) + ' (above max!)';
+        resultSpan.style.color = '#ff4d4f';
+    } else if (grade < 1) {
+        resultSpan.textContent = grade.toFixed(2) + ' (below min!)';
+        resultSpan.style.color = '#ff4d4f';
+    } else {
+        resultSpan.textContent = grade.toFixed(2);
+        resultSpan.style.color = 'white';
+    }
+}
+
 document.getElementById('addGradeBtn').addEventListener('click', addGrade);
 
 init();

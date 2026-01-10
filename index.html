@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,6 +61,39 @@
                         <span id="requiredGrade">-</span>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Points to Grade Converter -->
+        <div class="calculator-wrapper points-converter">
+            <h2>Calculate Grade from Points</h2>
+            <div class="points-input-section">
+                <div class="input-group">
+                    <label for="maxPoints">Max Points:</label>
+                    <input
+                        type="number"
+                        id="maxPoints"
+                        step="0.1"
+                        min="0"
+                        placeholder="e.g. 100"
+                        oninput="calculateGradeFromPoints()"
+                    >
+                </div>
+                <div class="input-group">
+                    <label for="achievedPoints">Achieved Points:</label>
+                    <input
+                        type="number"
+                        id="achievedPoints"
+                        step="0.1"
+                        min="0"
+                        placeholder="e.g. 85"
+                        oninput="calculateGradeFromPoints()"
+                    >
+                </div>
+            </div>
+            <div class="points-result">
+                <span>Calculated Grade:</span>
+                <span id="calculatedGrade">-</span>
             </div>
         </div>
     </div>

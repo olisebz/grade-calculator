@@ -8,6 +8,7 @@ A simple web calculator for weighted grades.
 
 - Calculate weighted grade averages
 - Find out what grade you need for your target
+- Convert points to grades using the formula: Grade = (Points × 5) / Max Points + 1
 - Add or delete grades
 - Clean design
 

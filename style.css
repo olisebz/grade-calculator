@@ -15,6 +15,9 @@ body {
 .container {
     max-width: 900px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 h1 {
@@ -24,6 +27,14 @@ h1 {
     font-size: 2.5em;
     font-weight: 700;
     letter-spacing: -1px;
+}
+
+h2 {
+    text-align: center;
+    color: #2E6F40;
+    margin: 20px 0;
+    font-size: 1.5em;
+    font-weight: 600;
 }
 
 .calculator-wrapper {
@@ -335,5 +346,91 @@ input[type="number"]:focus {
     
     .required-grade span:last-child {
         font-size: 1.2em;
+    }
+}
+/* Points to Grade Converter Section */
+.points-converter {
+    margin-top: 20px;
+}
+
+.points-input-section {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    background: linear-gradient(135deg, #f0f9f4 0%, #e8f5e9 100%);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+}
+
+.input-group label {
+    color: #2E6F40;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.input-group input {
+    padding: 10px 14px;
+    border: 2px solid #e8e8e8;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #2E6F40;
+    box-shadow: 0 0 0 3px rgba(46, 111, 64, 0.1);
+}
+
+.points-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #2E6F40 0%, #3d8a54 100%);
+    color: white;
+    padding: 12px 25px;
+    font-size: 1em;
+}
+
+.points-result span:first-child {
+    font-weight: 600;
+}
+
+.points-result span:last-child {
+    font-weight: 700;
+    font-size: 1.3em;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .points-input-section {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .input-group {
+        min-width: 100%;
+    }
+    
+    .points-result {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 20px;
+        font-size: 1em;
+    }
+    
+    .points-result span:last-child {
+        font-size: 1.4em;
     }
 }
