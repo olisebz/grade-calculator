@@ -87,7 +87,6 @@ h2 {
 
 .table-wrapper {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
 }
 
 table {
@@ -191,11 +190,11 @@ input[type="number"]:focus {
     cursor: pointer;
     letter-spacing: 0.5px;
     box-shadow: 0 2px 8px rgba(46, 111, 64, 0.2);
-    transition: background 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
-.add-btn:hover { background: linear-gradient(135deg, var(--color-primary-dark) 0%, #358a4a 100%); }
-.add-btn:active { background: linear-gradient(135deg, var(--color-primary-darker) 0%, #2d7a40 100%); }
+.add-btn:hover { opacity: 0.9; }
+.add-btn:active { opacity: 0.8; }
 
 /* ==========================================================================
    RESULTS & GRADES
