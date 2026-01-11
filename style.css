@@ -335,17 +335,22 @@ input[type="number"]:focus {
     
     .target-input-group {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
+        align-items: stretch;
+        gap: 12px;
     }
     
     .target-input-group label {
         min-width: auto;
+        font-size: 0.9em;
+        margin-bottom: -8px;
     }
     
     .target-input-group input {
-        max-width: 100%;
         width: 100%;
+        max-width: none;
+        flex: none;
+        padding: 10px 12px;
+        font-size: 16px;
     }
     
     .required-grade {
