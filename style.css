@@ -99,6 +99,7 @@ td:first-child {
     color: #2E6F40;
     font-weight: 700;
     font-size: 1.1em;
+    text-align: center;
 }
 
 td:last-child {
@@ -284,19 +285,24 @@ input[type="number"]:focus {
     }
     
     table {
-        font-size: 12px;
+        font-size: 13px;
     }
     
     th, td {
-        padding: 8px 5px;
+        padding: 10px 6px;
     }
     
     th:first-child {
-        width: 40px;
+        width: 45px;
+        text-align: center;
+    }
+    
+    td:first-child {
+        font-size: 1em;
     }
     
     th:nth-child(2) {
-        width: 50%;
+        width: 45%;
     }
     
     th:nth-child(3) {
@@ -304,7 +310,7 @@ input[type="number"]:focus {
     }
     
     th:last-child {
-        width: 80px;
+        width: 85px;
     }
     
     input[type="number"] {
