@@ -1,14 +1,44 @@
+/* ==========================================================================
+   BASE STYLES
+   ========================================================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    --color-primary: #2E6F40;
+    --color-primary-dark: #267336;
+    --color-primary-darker: #1f5f2e;
+    --color-error: #ff4d4f;
+    --color-error-dark: #ff1f1f;
+    --color-error-darker: #e00000;
+    
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e8f0f5 100%);
+    --primary-gradient: linear-gradient(135deg, var(--color-primary) 0%, #3d8a54 100%);
+    --result-gradient: linear-gradient(135deg, #f0f9f4 0%, #e8f5e9 100%);
+    
+    --border-color: #e8ecef;
+    --border-color-hover: #c8d1d8;
+    
+    --radius-sm: 10px;
+    --radius-md: 12px;
+    --radius-lg: 14px;
+    --radius-xl: 16px;
+    --radius-2xl: 24px;
+    
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-lg: 24px;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Segoe UI', sans-serif;
-    background: #fff;
+    background: var(--bg-gradient);
     color: #1a1a1a;
-    padding: 40px 20px;
+    padding: 60px 20px;
     min-height: 100vh;
 }
 
@@ -20,45 +50,57 @@ body {
     gap: 30px;
 }
 
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
 h1 {
     text-align: center;
-    color: #2E6F40;
-    margin-bottom: 25px;
-    font-size: 2.5em;
-    font-weight: 700;
-    letter-spacing: -1px;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+    font-size: 2.8em;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    text-shadow: 0 2px 4px rgba(46, 111, 64, 0.1);
 }
 
 h2 {
     text-align: center;
-    color: #2E6F40;
-    margin: 20px 0;
-    font-size: 1.5em;
-    font-weight: 600;
+    color: var(--color-primary);
+    margin: var(--spacing-lg) 0;
+    font-size: 1.6em;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
+/* ==========================================================================
+   CALCULATOR WRAPPER & TABLE
+   ========================================================================== */
+
 .calculator-wrapper {
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 0;
-    box-shadow: 0 20px 60px rgba(46, 111, 64, 0.08);
+    background-color: #fff;
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 4px 20px rgba(46, 111, 64, 0.1);
     overflow: hidden;
-    border: 1px solid rgba(46, 111, 64, 0.1);
+    border: 1px solid rgba(46, 111, 64, 0.08);
+}
+
+.table-wrapper {
+    overflow-x: auto;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 0;
 }
 
 thead {
-    background: linear-gradient(135deg, #2E6F40 0%, #3d8a54 100%);
+    background: var(--primary-gradient);
     color: white;
 }
 
 th {
-    padding: 12px 15px;
+    padding: var(--spacing-sm) 15px;
     text-align: left;
     font-weight: 600;
     font-size: 0.9em;
@@ -66,132 +108,115 @@ th {
     letter-spacing: 0.5px;
 }
 
-th:first-child {
-    width: 70px;
-}
+th:first-child { width: 70px; }
+th:nth-child(2) { width: auto; }
+th:nth-child(3) { width: 200px; }
+th:last-child { width: 120px; text-align: center; }
 
-th:nth-child(2) {
-    width: auto;
-}
-
-th:nth-child(3) {
-    width: 200px;
-}
-
-th:last-child {
-    width: 120px;
-    text-align: center;
-}
-
-tbody tr {
-    border-bottom: 1px solid #f0f0f0;
-}
-
-tbody tr:last-child {
-    border-bottom: none;
-}
+tbody tr { border-bottom: 1px solid #f0f0f0; }
+tbody tr:last-child { border-bottom: none; }
 
 td {
     padding: 10px 15px;
 }
 
 td:first-child {
-    color: #2E6F40;
+    color: var(--color-primary);
     font-weight: 700;
     font-size: 1.1em;
-}
-
-td:last-child {
     text-align: center;
 }
 
+td:last-child { text-align: center; }
+
+/* ==========================================================================
+   FORM INPUTS
+   ========================================================================== */
+
 input[type="number"] {
     width: 100%;
-    padding: 8px 12px;
-    border: 2px solid #e8e8e8;
-    border-radius: 8px;
+    padding: 10px 14px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
     font-size: 14px;
     font-weight: 500;
-    transition: all 0.3s ease;
-    background-color: #fafafa;
+    background-color: #fafbfc;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 input[type="number"]:hover {
-    background-color: #ffffff;
-    border-color: #d0d0d0;
+    background-color: #fff;
+    border-color: var(--border-color-hover);
 }
 
 input[type="number"]:focus {
     outline: none;
-    border-color: #2E6F40;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(46, 111, 64, 0.1);
+    border-color: var(--color-primary);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(46, 111, 64, 0.08);
 }
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
 
 .delete-btn {
-    background-color: #ff4d4f;
+    background-color: var(--color-error);
     color: white;
     border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 8px 18px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    font-size: 12px;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover { background-color: var(--color-error-dark); }
+.delete-btn:active { background-color: var(--color-error-darker); }
+
+.add-btn {
+    width: calc(100% - 40px);
+    margin: var(--spacing-md);
+    padding: 14px;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
     letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(46, 111, 64, 0.2);
+    transition: opacity 0.2s ease;
 }
 
-.delete-btn:hover {
-    background-color: #ff1f1f;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 77, 79, 0.3);
-}
+.add-btn:hover { opacity: 0.9; }
+.add-btn:active { opacity: 0.8; }
 
-.delete-btn:active {
-    transform: translateY(0);
-}
+/* ==========================================================================
+   RESULTS & GRADES
+   ========================================================================== */
 
 .total-weight {
     text-align: right;
-    padding: 8px 15px;
-    font-size: 0.9em;
-    color: #2E6F40;
-    font-weight: 600;
-    background-color: #f8f8f8;
-    border-top: 1px solid #f0f0f0;
-}
-
-.add-btn {
-    width: calc(100% - 30px);
-    margin: 15px 15px;
-    padding: 10px;
-    background: linear-gradient(135deg, #2E6F40 0%, #3d8a54 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(46, 111, 64, 0.2);
-}
-
-.add-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(46, 111, 64, 0.3);
-}
-
-.add-btn:active {
-    transform: translateY(0);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.95em;
+    color: var(--color-primary);
+    font-weight: 700;
+    background: linear-gradient(90deg, transparent 0%, rgba(46, 111, 64, 0.04) 100%);
+    border-top: 2px solid rgba(46, 111, 64, 0.08);
+    letter-spacing: 0.3px;
 }
 
 .result-section {
-    background: linear-gradient(135deg, #f0f9f4 0%, #e8f5e9 100%);
-    padding: 20px;
-    margin: 15px;
-    border-radius: 10px;
-    border: 2px solid rgba(46, 111, 64, 0.2);
+    background: var(--result-gradient);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-md);
+    border-radius: var(--radius-xl);
+    border: 2px solid rgba(46, 111, 64, 0.12);
 }
 
 .result {
@@ -199,21 +224,21 @@ input[type="number"]:focus {
     justify-content: space-between;
     align-items: center;
     font-size: 1.1em;
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-md);
     padding-bottom: 15px;
     border-bottom: 1px solid rgba(46, 111, 64, 0.15);
 }
 
 .result span:first-child {
-    color: #2E6F40;
+    color: var(--color-primary);
     font-weight: 600;
 }
 
 .result span:last-child {
-    color: #2E6F40;
-    font-weight: 800;
-    font-size: 1.6em;
-    letter-spacing: -1px;
+    color: var(--color-primary);
+    font-weight: 900;
+    font-size: 2em;
+    letter-spacing: -1.5px;
 }
 
 .target-section {
@@ -225,154 +250,68 @@ input[type="number"]:focus {
 .target-input-group {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: var(--spacing-sm);
     flex-wrap: wrap;
 }
 
 .target-input-group label {
-    color: #2E6F40;
+    color: var(--color-primary);
     font-weight: 600;
     font-size: 0.95em;
 }
 
 .target-input-group input {
     flex: 0 1 140px;
-    padding: 8px 12px;
-    border: 2px solid #e8e8e8;
-    border-radius: 8px;
+    padding: 10px 14px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
     font-size: 14px;
     font-weight: 500;
     background-color: #fff;
-    transition: all 0.3s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .target-input-group input:focus {
     outline: none;
-    border-color: #2E6F40;
-    box-shadow: 0 0 0 3px rgba(46, 111, 64, 0.1);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(46, 111, 64, 0.08);
 }
 
 .required-grade {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(46, 111, 64, 0.05);
-    padding: 12px 15px;
-    border-radius: 8px;
-    font-size: 1em;
+    background-color: rgba(46, 111, 64, 0.06);
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(46, 111, 64, 0.1);
 }
 
 .required-grade span:first-child {
-    color: #2E6F40;
+    color: var(--color-primary);
     font-weight: 600;
 }
 
 .required-grade span:last-child {
-    color: #2E6F40;
-    font-weight: 700;
-    font-size: 1.3em;
+    color: var(--color-primary);
+    font-weight: 800;
+    font-size: 1.4em;
+    letter-spacing: -0.5px;
 }
 
-/* Responsive design */
-@media (max-width: 600px) {
-    body {
-        padding: 20px 10px;
-    }
-    
-    h1 {
-        font-size: 2em;
-    }
-    
-    table {
-        font-size: 12px;
-    }
-    
-    th, td {
-        padding: 8px 5px;
-    }
-    
-    th:first-child {
-        width: 40px;
-    }
-    
-    th:nth-child(2) {
-        width: 50%;
-    }
-    
-    th:nth-child(3) {
-        width: 30%;
-    }
-    
-    th:last-child {
-        width: 80px;
-    }
-    
-    input[type="number"] {
-        padding: 8px 10px;
-        font-size: 14px;
-    }
-    
-    .delete-btn {
-        padding: 6px 10px;
-        font-size: 11px;
-    }
-    
-    .result-section {
-        padding: 15px;
-    }
-    
-    .result {
-        font-size: 0.9em;
-        flex-direction: column;
-        gap: 8px;
-        margin-bottom: 15px;
-        padding-bottom: 12px;
-    }
-    
-    .result span:last-child {
-        font-size: 1.4em;
-    }
-    
-    .target-input-group {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-    }
-    
-    .target-input-group label {
-        min-width: auto;
-        font-size: 0.9em;
-        margin-bottom: -8px;
-    }
-    
-    .target-input-group input {
-        width: 100%;
-        max-width: none;
-        flex: none;
-        padding: 10px 12px;
-        font-size: 16px;
-    }
-    
-    .required-grade {
-        font-size: 0.9em;
-        flex-direction: column;
-        gap: 6px;
-    }
-    
-    .required-grade span:last-child {
-        font-size: 1.2em;
-    }
-}
-/* Points to Grade Converter Section */
+/* ==========================================================================
+   POINTS CONVERTER
+   ========================================================================== */
+
 .points-converter {
-    margin-top: 20px;
+    margin-top: var(--spacing-md);
 }
 
 .points-input-section {
     display: flex;
-    gap: 20px;
+    gap: var(--spacing-md);
     padding: 30px;
-    background: linear-gradient(135deg, #f0f9f4 0%, #e8f5e9 100%);
+    background: var(--result-gradient);
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -387,65 +326,119 @@ input[type="number"]:focus {
 }
 
 .input-group label {
-    color: #2E6F40;
+    color: var(--color-primary);
     font-weight: 600;
     font-size: 0.95em;
 }
 
 .input-group input {
-    padding: 10px 14px;
-    border: 2px solid #e8e8e8;
-    border-radius: 8px;
+    padding: var(--spacing-sm) 16px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
     font-size: 16px;
     font-weight: 500;
     background-color: #fff;
-    transition: all 0.3s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .input-group input:focus {
     outline: none;
-    border-color: #2E6F40;
-    box-shadow: 0 0 0 3px rgba(46, 111, 64, 0.1);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(46, 111, 64, 0.08);
 }
 
 .points-result {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(135deg, #2E6F40 0%, #3d8a54 100%);
+    background: var(--primary-gradient);
     color: white;
-    padding: 12px 25px;
-    font-size: 1em;
+    padding: 16px 28px;
+    font-size: 1.05em;
 }
 
 .points-result span:first-child {
     font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
 .points-result span:last-child {
-    font-weight: 700;
-    font-size: 1.3em;
-    color: white;
+    font-weight: 800;
+    font-size: 1.5em;
+    letter-spacing: -0.5px;
 }
 
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
 @media (max-width: 600px) {
+    body { padding: 20px 10px; }
+    h1 { font-size: 2em; }
+    
+    /* Table */
+    table { font-size: 13px; }
+    th, td { padding: 10px 6px; }
+    th:first-child { width: 45px; text-align: center; }
+    th:nth-child(2) { width: 45%; }
+    th:nth-child(3) { width: 30%; }
+    th:last-child { width: 85px; }
+    td:first-child { font-size: 1em; }
+    
+    /* Inputs */
+    input[type="number"] { padding: 8px 10px; font-size: 14px; }
+    
+    /* Buttons */
+    .delete-btn { padding: 6px 10px; font-size: 11px; }
+    
+    /* Results */
+    .result-section { padding: 15px; }
+    .result {
+        font-size: 0.9em;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 15px;
+        padding-bottom: var(--spacing-sm);
+    }
+    .result span:last-child { font-size: 1.4em; }
+    
+    /* Target Grade */
+    .target-input-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-sm);
+    }
+    .target-input-group label {
+        font-size: 0.9em;
+        margin-bottom: -8px;
+    }
+    .target-input-group input {
+        width: 100%;
+        max-width: none;
+        flex: none;
+        padding: 10px var(--spacing-sm);
+        font-size: 16px;
+    }
+    
+    /* Required Grade */
+    .required-grade {
+        font-size: 0.9em;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .required-grade span:last-child { font-size: 1.2em; }
+    
+    /* Points Converter */
     .points-input-section {
         flex-direction: column;
-        padding: 20px;
+        padding: var(--spacing-md);
     }
-    
-    .input-group {
-        min-width: 100%;
-    }
-    
+    .input-group { min-width: 100%; }
     .points-result {
         flex-direction: column;
         gap: 10px;
-        padding: 15px 20px;
+        padding: 15px var(--spacing-md);
         font-size: 1em;
     }
-    
-    .points-result span:last-child {
-        font-size: 1.4em;
-    }
+    .points-result span:last-child { font-size: 1.4em; }
 }
