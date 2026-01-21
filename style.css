@@ -331,6 +331,37 @@ input[type="number"]:focus {
     font-size: 0.95em;
 }
 
+.input-with-percentage {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.input-with-percentage input {
+    flex: 1;
+    padding: var(--spacing-sm) 16px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-with-percentage input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(46, 111, 64, 0.08);
+}
+
+.percentage-badge {
+    font-weight: 700;
+    font-size: 1.1em;
+    color: var(--color-primary);
+    min-width: 60px;
+    text-align: right;
+}
+
 .input-group input {
     padding: var(--spacing-sm) 16px;
     border: 2px solid var(--border-color);

@@ -72,23 +72,29 @@
             <div class="points-input-section">
                 <div class="input-group">
                     <label for="maxPoints">Max Points:</label>
-                    <input
-                        type="number"
-                        id="maxPoints"
-                        step="0.1"
-                        min="0"
-                        placeholder="e.g. 100"
-                    >
+                    <div class="input-with-percentage">
+                        <input
+                            type="number"
+                            id="maxPoints"
+                            step="0.1"
+                            min="0"
+                            placeholder="e.g. 100"
+                        >
+                        <span class="percentage-badge">100%</span>
+                    </div>
                 </div>
                 <div class="input-group">
                     <label for="achievedPoints">Achieved Points:</label>
-                    <input
-                        type="number"
-                        id="achievedPoints"
-                        step="0.1"
-                        min="0"
-                        placeholder="e.g. 85"
-                    >
+                    <div class="input-with-percentage">
+                        <input
+                            type="number"
+                            id="achievedPoints"
+                            step="0.1"
+                            min="0"
+                            placeholder="e.g. 85"
+                        >
+                        <span class="percentage-badge" id="achievedPercentage">0%</span>
+                    </div>
                 </div>
             </div>
             <div class="points-result">
