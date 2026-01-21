@@ -1,0 +1,18 @@
+<svg viewBox="0 0 64 64"
+  xmlns="http://www.w3.org/2000/svg">
+  <!-- Calculator body -->
+  <rect x="12" y="8" width="40" height="52" rx="4" fill="#2E6F40" stroke="#267336" stroke-width="2"/>
+  <!-- Display -->
+  <rect x="16" y="12" width="32" height="12" rx="2" fill="#f0f9f4"/>
+  <!-- Buttons -->
+  <circle cx="22" cy="32" r="3" fill="#e8f5e9"/>
+  <circle cx="32" cy="32" r="3" fill="#e8f5e9"/>
+  <circle cx="42" cy="32" r="3" fill="#e8f5e9"/>
+  <circle cx="22" cy="40" r="3" fill="#e8f5e9"/>
+  <circle cx="32" cy="40" r="3" fill="#e8f5e9"/>
+  <circle cx="42" cy="40" r="3" fill="#e8f5e9"/>
+  <circle cx="22" cy="48" r="3" fill="#e8f5e9"/>
+  <circle cx="32" cy="48" r="3" fill="#e8f5e9"/>
+  <circle cx="42" cy="48" r="3" fill="#e8f5e9"/>
+  <rect x="38" y="52" width="8" height="4" rx="1" fill="#3d8a54"/>
+</svg>
