@@ -63,11 +63,13 @@ function computeRequiredGrade(currentWeightedSum, currentWeight, target, nextWei
  * Compute grade from points using Swiss formula
  * @param {number} achieved - Achieved points
  * @param {number} max - Maximum points
+ * @param {number} threshold - Percentage needed for grade 6 (default 100)
  * @returns {{grade: number|null, percentage: number|null, status: string}}
  */
-function computeGradeFromPoints(achieved, max) {
+function computeGradeFromPoints(achieved, max, threshold = 100) {
     const achievedNum = parseFloat(achieved);
     const maxNum = parseFloat(max);
+    const thresholdNum = parseFloat(threshold);
     
     // Check for invalid inputs
     if (!Number.isFinite(maxNum)) {
@@ -86,9 +88,13 @@ function computeGradeFromPoints(achieved, max) {
         return { grade: null, percentage: null, status: 'invalid_achieved' };
     }
     
-    // Formula: grade = (achieved * 5) / max + 1
-    const grade = (achievedNum * 5) / maxNum + 1;
+    if (!Number.isFinite(thresholdNum) || thresholdNum <= 0 || thresholdNum > 100) {
+        return { grade: null, percentage: null, status: 'invalid_threshold' };
+    }
+    
     const percentage = (achievedNum / maxNum) * 100;
+    // Formula: grade = (percentage * 5) / threshold + 1
+    const grade = (percentage * 5) / thresholdNum + 1;
     
     if (achievedNum > maxNum) {
         return { grade: grade, percentage: percentage, status: 'above_max' };
@@ -298,10 +304,11 @@ function updateRequiredGrade() {
 function updateGradeFromPoints() {
     const maxPoints = document.getElementById('maxPoints').value;
     const achievedPoints = document.getElementById('achievedPoints').value;
+    const threshold = document.getElementById('gradeThreshold').value;
     const resultSpan = document.getElementById('calculatedGrade');
     const percentageSpan = document.getElementById('achievedPercentage');
     
-    const result = computeGradeFromPoints(achievedPoints, maxPoints);
+    const result = computeGradeFromPoints(achievedPoints, maxPoints, threshold);
     
     if (result.status === 'empty') {
         resultSpan.textContent = '-';
@@ -315,6 +322,11 @@ function updateGradeFromPoints() {
         percentageSpan.style.color = '#666';
     } else if (result.status === 'invalid_achieved') {
         resultSpan.textContent = 'Invalid points';
+        resultSpan.style.color = '#ff4d4f';
+        percentageSpan.textContent = '0%';
+        percentageSpan.style.color = '#666';
+    } else if (result.status === 'invalid_threshold') {
+        resultSpan.textContent = 'Invalid threshold';
         resultSpan.style.color = '#ff4d4f';
         percentageSpan.textContent = '0%';
         percentageSpan.style.color = '#666';
@@ -371,6 +383,7 @@ function initEventListeners() {
     // Points converter inputs
     document.getElementById('maxPoints').addEventListener('input', updateGradeFromPoints);
     document.getElementById('achievedPoints').addEventListener('input', updateGradeFromPoints);
+    document.getElementById('gradeThreshold').addEventListener('input', updateGradeFromPoints);
 }
 
 /**

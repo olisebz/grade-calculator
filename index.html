@@ -96,10 +96,24 @@
                         <span class="percentage-badge" id="achievedPercentage">0%</span>
                     </div>
                 </div>
+                <div class="input-group threshold-input-group">
+                    <label for="gradeThreshold">% for 6.0:</label>
+                    <input
+                        type="number"
+                        id="gradeThreshold"
+                        step="0.1"
+                        min="1"
+                        max="100"
+                        value="100"
+                        placeholder="100"
+                    >
+                </div>
             </div>
             <div class="points-result">
                 <span>Calculated Grade:</span>
                 <span id="calculatedGrade">-</span>
+            </div>
+
             </div>
         </div>
     </div>

@@ -307,6 +307,34 @@ input[type="number"]:focus {
     margin-top: var(--spacing-md);
 }
 
+.threshold-input-group {
+    max-width: 140px;
+}
+
+.threshold-input-group label {
+    color: #666;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+.threshold-input-group input {
+    width: 100px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    background-color: #f9f9f9;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.threshold-input-group input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(46, 111, 64, 0.06);
+}
 .points-input-section {
     display: flex;
     gap: var(--spacing-md);
