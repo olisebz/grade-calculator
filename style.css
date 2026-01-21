@@ -42,6 +42,26 @@ body {
     min-height: 100vh;
 }
 
+.header-with-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 2px 8px rgba(46, 111, 64, 0.15));
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -55,9 +75,8 @@ body {
    ========================================================================== */
 
 h1 {
-    text-align: center;
     color: var(--color-primary);
-    margin-bottom: 40px;
+    margin: 0;
     font-size: 2.8em;
     font-weight: 800;
     letter-spacing: -1.5px;
