@@ -42,6 +42,26 @@ body {
     min-height: 100vh;
 }
 
+.header-with-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 2px 8px rgba(46, 111, 64, 0.15));
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -55,9 +75,8 @@ body {
    ========================================================================== */
 
 h1 {
-    text-align: center;
     color: var(--color-primary);
-    margin-bottom: 40px;
+    margin: 0;
     font-size: 2.8em;
     font-weight: 800;
     letter-spacing: -1.5px;
@@ -307,6 +326,34 @@ input[type="number"]:focus {
     margin-top: var(--spacing-md);
 }
 
+.threshold-input-group {
+    max-width: 140px;
+}
+
+.threshold-input-group label {
+    color: #666;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+.threshold-input-group input {
+    width: 100px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    background-color: #f9f9f9;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.threshold-input-group input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(46, 111, 64, 0.06);
+}
 .points-input-section {
     display: flex;
     gap: var(--spacing-md);
@@ -329,6 +376,37 @@ input[type="number"]:focus {
     color: var(--color-primary);
     font-weight: 600;
     font-size: 0.95em;
+}
+
+.input-with-percentage {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.input-with-percentage input {
+    flex: 1;
+    padding: var(--spacing-sm) 16px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-with-percentage input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(46, 111, 64, 0.08);
+}
+
+.percentage-badge {
+    font-weight: 700;
+    font-size: 1.1em;
+    color: var(--color-primary);
+    min-width: 60px;
+    text-align: right;
 }
 
 .input-group input {

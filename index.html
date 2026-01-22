@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grade Calculator</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Grade Calculator</h1>
+        <div class="header-with-logo">
+            <h1>Grade Calculator</h1>
+            <img src="favicon.svg" alt="Calculator Logo" class="logo">
+        </div>
         
         <div class="calculator-wrapper">
             <div class="table-wrapper">
@@ -72,22 +76,40 @@
             <div class="points-input-section">
                 <div class="input-group">
                     <label for="maxPoints">Max Points:</label>
-                    <input
-                        type="number"
-                        id="maxPoints"
-                        step="0.1"
-                        min="0"
-                        placeholder="e.g. 100"
-                    >
+                    <div class="input-with-percentage">
+                        <input
+                            type="number"
+                            id="maxPoints"
+                            step="0.1"
+                            min="0"
+                            placeholder="e.g. 100"
+                        >
+                        <span class="percentage-badge">100%</span>
+                    </div>
                 </div>
                 <div class="input-group">
                     <label for="achievedPoints">Achieved Points:</label>
+                    <div class="input-with-percentage">
+                        <input
+                            type="number"
+                            id="achievedPoints"
+                            step="0.1"
+                            min="0"
+                            placeholder="e.g. 85"
+                        >
+                        <span class="percentage-badge" id="achievedPercentage">0%</span>
+                    </div>
+                </div>
+                <div class="input-group threshold-input-group">
+                    <label for="gradeThreshold">% for 6.0:</label>
                     <input
                         type="number"
-                        id="achievedPoints"
+                        id="gradeThreshold"
                         step="0.1"
-                        min="0"
-                        placeholder="e.g. 85"
+                        min="1"
+                        max="100"
+                        value="100"
+                        placeholder="100"
                     >
                 </div>
             </div>

@@ -1,4 +1,11 @@
 // Grade Calculator - No persistence, data will be lost on reload
+
+// Constants
+const DEFAULT_PERCENTAGE = 100;
+const INITIAL_GRADE_ROWS = 5;
+const MIN_GRADE = 1;
+const MAX_GRADE = 6;
+
 let grades = [];
 let gradeCounter = 0;
 
@@ -63,37 +70,44 @@ function computeRequiredGrade(currentWeightedSum, currentWeight, target, nextWei
  * Compute grade from points using Swiss formula
  * @param {number} achieved - Achieved points
  * @param {number} max - Maximum points
- * @returns {{grade: number|null, status: string}}
+ * @param {number} threshold - Percentage needed for grade 6 (default 100)
+ * @returns {{grade: number|null, percentage: number|null, status: string}}
  */
-function computeGradeFromPoints(achieved, max) {
+function computeGradeFromPoints(achieved, max, threshold = 100) {
     const achievedNum = parseFloat(achieved);
     const maxNum = parseFloat(max);
+    const thresholdNum = parseFloat(threshold);
     
     // Check for invalid inputs
     if (!Number.isFinite(maxNum)) {
-        return { grade: null, status: 'empty' };
+        return { grade: null, percentage: null, status: 'empty' };
     }
     
     if (maxNum <= 0) {
-        return { grade: null, status: 'invalid_max' };
+        return { grade: null, percentage: null, status: 'invalid_max' };
     }
     
     if (!Number.isFinite(achievedNum)) {
-        return { grade: null, status: 'empty' };
+        return { grade: null, percentage: null, status: 'empty' };
     }
     
     if (achievedNum < 0) {
-        return { grade: null, status: 'invalid_achieved' };
+        return { grade: null, percentage: null, status: 'invalid_achieved' };
     }
     
-    // Formula: grade = (achieved * 5) / max + 1
-    const grade = (achievedNum * 5) / maxNum + 1;
+    if (!Number.isFinite(thresholdNum) || thresholdNum <= 0 || thresholdNum > 100) {
+        return { grade: null, percentage: null, status: 'invalid_threshold' };
+    }
+    
+    const percentage = (achievedNum / maxNum) * 100;
+    // Formula: grade = (percentage * 5) / threshold + 1
+    const grade = (percentage * 5) / thresholdNum + 1;
     
     if (achievedNum > maxNum) {
-        return { grade: grade, status: 'above_max' };
+        return { grade: grade, percentage: percentage, status: 'above_max' };
     }
     
-    return { grade: grade, status: 'valid' };
+    return { grade: grade, percentage: percentage, status: 'valid' };
 }
 
 // ========== STATE MANAGEMENT ==========
@@ -106,13 +120,13 @@ function addGrade() {
     const grade = {
         id: gradeCounter,
         value: '',
-        percentage: 100
+        percentage: DEFAULT_PERCENTAGE
     };
     grades.push(grade);
     renderGrades();
     
     // Focus the newly added grade input
-    setTimeout(() => {
+    requestAnimationFrame(() => {
         const newRow = document.querySelector(`[data-grade-id="${grade.id}"]`);
         if (newRow) {
             const gradeInput = newRow.querySelector('[data-field="grade"]');
@@ -120,7 +134,7 @@ function addGrade() {
                 gradeInput.focus();
             }
         }
-    }, 0);
+    });
 }
 
 /**
@@ -297,25 +311,42 @@ function updateRequiredGrade() {
 function updateGradeFromPoints() {
     const maxPoints = document.getElementById('maxPoints').value;
     const achievedPoints = document.getElementById('achievedPoints').value;
+    const threshold = document.getElementById('gradeThreshold').value;
     const resultSpan = document.getElementById('calculatedGrade');
+    const percentageSpan = document.getElementById('achievedPercentage');
     
-    const result = computeGradeFromPoints(achievedPoints, maxPoints);
+    const result = computeGradeFromPoints(achievedPoints, maxPoints, threshold);
     
     if (result.status === 'empty') {
         resultSpan.textContent = '-';
         resultSpan.style.color = 'white';
+        percentageSpan.textContent = '0%';
+        percentageSpan.style.color = '#666';
     } else if (result.status === 'invalid_max') {
         resultSpan.textContent = 'Invalid max points';
         resultSpan.style.color = '#ff4d4f';
+        percentageSpan.textContent = '0%';
+        percentageSpan.style.color = '#666';
     } else if (result.status === 'invalid_achieved') {
         resultSpan.textContent = 'Invalid points';
         resultSpan.style.color = '#ff4d4f';
+        percentageSpan.textContent = '0%';
+        percentageSpan.style.color = '#666';
+    } else if (result.status === 'invalid_threshold') {
+        resultSpan.textContent = 'Invalid threshold';
+        resultSpan.style.color = '#ff4d4f';
+        percentageSpan.textContent = '0%';
+        percentageSpan.style.color = '#666';
     } else if (result.status === 'above_max') {
         resultSpan.textContent = result.grade.toFixed(2) + ' (above max!)';
         resultSpan.style.color = '#ff4d4f';
+        percentageSpan.textContent = result.percentage.toFixed(1) + '%';
+        percentageSpan.style.color = '#ff4d4f';
     } else {
         resultSpan.textContent = result.grade.toFixed(2);
         resultSpan.style.color = 'white';
+        percentageSpan.textContent = result.percentage.toFixed(1) + '%';
+        percentageSpan.style.color = '#2E6F40';
     }
 }
 
@@ -359,18 +390,19 @@ function initEventListeners() {
     // Points converter inputs
     document.getElementById('maxPoints').addEventListener('input', updateGradeFromPoints);
     document.getElementById('achievedPoints').addEventListener('input', updateGradeFromPoints);
+    document.getElementById('gradeThreshold').addEventListener('input', updateGradeFromPoints);
 }
 
 /**
- * Initialize app with 5 empty grade rows
+ * Initialize app with empty grade rows
  */
 function init() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < INITIAL_GRADE_ROWS; i++) {
         gradeCounter++;
         grades.push({
             id: gradeCounter,
             value: '',
-            percentage: 100
+            percentage: DEFAULT_PERCENTAGE
         });
     }
     renderGrades();
