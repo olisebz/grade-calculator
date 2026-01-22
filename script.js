@@ -391,6 +391,25 @@ function initEventListeners() {
     document.getElementById('maxPoints').addEventListener('input', updateGradeFromPoints);
     document.getElementById('achievedPoints').addEventListener('input', updateGradeFromPoints);
     document.getElementById('gradeThreshold').addEventListener('input', updateGradeFromPoints);
+    
+    // Dark mode toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+    
+    // Check saved preference
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+        themeIcon.classList.remove('moon-icon');
+        themeIcon.classList.add('sun-icon');
+    }
+    
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        themeIcon.classList.toggle('moon-icon', !isDark);
+        themeIcon.classList.toggle('sun-icon', isDark);
+        localStorage.setItem('darkMode', isDark);
+    });
 }
 
 /**

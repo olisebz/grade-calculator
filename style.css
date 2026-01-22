@@ -520,3 +520,196 @@ input[type="number"]:focus {
     }
     .points-result span:last-child { font-size: 1.4em; }
 }
+
+/* ==========================================================================
+   DARK MODE TOGGLE
+   ========================================================================== */
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.theme-icon {
+    width: 22px;
+    height: 22px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.moon-icon {
+    background: #333;
+    border-radius: 50%;
+    position: relative;
+}
+
+.moon-icon::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 6px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.sun-icon {
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 
+        0 -12px 0 -4px #fff,
+        12px 0 0 -4px #fff,
+        0 12px 0 -4px #fff,
+        -12px 0 0 -4px #fff,
+        8px 8px 0 -4px #fff,
+        -8px 8px 0 -4px #fff,
+        8px -8px 0 -4px #fff,
+        -8px -8px 0 -4px #fff;
+}
+
+body.dark-mode .moon-icon {
+    background: #fbbf24;
+}
+
+body.dark-mode .moon-icon::before {
+    background: #2a2a2a;
+}
+
+body.dark-mode .sun-icon {
+    background: #fff;
+    box-shadow: 
+        0 -12px 0 -4px #fff,
+        12px 0 0 -4px #fff,
+        0 12px 0 -4px #fff,
+        -12px 0 0 -4px #fff,
+        8px 8px 0 -4px #fff,
+        -8px 8px 0 -4px #fff,
+        8px -8px 0 -4px #fff,
+        -8px -8px 0 -4px #fff;
+}
+
+/* ==========================================================================
+   DARK MODE
+   ========================================================================== */
+
+body.dark-mode {
+    background: #1a1a1a;
+    color: #f0f0f0;
+}
+
+body.dark-mode .calculator-wrapper {
+    background-color: #2a2a2a;
+    border-color: #3a3a3a;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode h1,
+body.dark-mode h2 {
+    color: #4ade80;
+}
+
+body.dark-mode thead {
+    background: linear-gradient(135deg, #2E6F40 0%, #3d8a54 100%);
+}
+
+body.dark-mode tbody tr {
+    border-bottom-color: #3a3a3a;
+}
+
+body.dark-mode td:first-child {
+    color: #4ade80;
+}
+
+body.dark-mode input[type="number"] {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+    color: #f0f0f0;
+}
+
+body.dark-mode input[type="number"]:focus {
+    border-color: #4ade80;
+    background-color: #3a3a3a;
+}
+
+body.dark-mode .total-weight {
+    background: linear-gradient(90deg, transparent 0%, rgba(74, 222, 128, 0.1) 100%);
+    border-top-color: #3a3a3a;
+    color: #4ade80;
+}
+
+body.dark-mode .result-section {
+    background: linear-gradient(135deg, #1f3d2a 0%, #2a4a35 100%);
+    border-color: #3a5a45;
+}
+
+body.dark-mode .result span:first-child,
+body.dark-mode .result span:last-child {
+    color: #4ade80;
+}
+
+body.dark-mode .target-input-group label {
+    color: #4ade80;
+}
+
+body.dark-mode .target-input-group input {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+    color: #f0f0f0;
+}
+
+body.dark-mode .required-grade {
+    background-color: rgba(74, 222, 128, 0.1);
+    border-color: rgba(74, 222, 128, 0.2);
+}
+
+body.dark-mode .required-grade span {
+    color: #4ade80;
+}
+
+body.dark-mode .points-input-section {
+    background: linear-gradient(135deg, #1f3d2a 0%, #2a4a35 100%);
+}
+
+body.dark-mode .input-group label {
+    color: #4ade80;
+}
+
+body.dark-mode .input-group input,
+body.dark-mode .input-with-percentage input,
+body.dark-mode .threshold-input-group input {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+    color: #f0f0f0;
+}
+
+body.dark-mode .percentage-badge {
+    color: #4ade80;
+}
+
+body.dark-mode .theme-toggle {
+    background: #3a3a3a;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .logo {
+    filter: drop-shadow(0 2px 8px rgba(74, 222, 128, 0.2));
+}
