@@ -1,4 +1,11 @@
 // Grade Calculator - No persistence, data will be lost on reload
+
+// Constants
+const DEFAULT_PERCENTAGE = 100;
+const INITIAL_GRADE_ROWS = 5;
+const MIN_GRADE = 1;
+const MAX_GRADE = 6;
+
 let grades = [];
 let gradeCounter = 0;
 
@@ -113,13 +120,13 @@ function addGrade() {
     const grade = {
         id: gradeCounter,
         value: '',
-        percentage: 100
+        percentage: DEFAULT_PERCENTAGE
     };
     grades.push(grade);
     renderGrades();
     
     // Focus the newly added grade input
-    setTimeout(() => {
+    requestAnimationFrame(() => {
         const newRow = document.querySelector(`[data-grade-id="${grade.id}"]`);
         if (newRow) {
             const gradeInput = newRow.querySelector('[data-field="grade"]');
@@ -127,7 +134,7 @@ function addGrade() {
                 gradeInput.focus();
             }
         }
-    }, 0);
+    });
 }
 
 /**
@@ -387,15 +394,15 @@ function initEventListeners() {
 }
 
 /**
- * Initialize app with 5 empty grade rows
+ * Initialize app with empty grade rows
  */
 function init() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < INITIAL_GRADE_ROWS; i++) {
         gradeCounter++;
         grades.push({
             id: gradeCounter,
             value: '',
-            percentage: 100
+            percentage: DEFAULT_PERCENTAGE
         });
     }
     renderGrades();
