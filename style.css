@@ -72,7 +72,13 @@ body {
 .app-container {
     width: 100%;
     max-width: 800px;
-    padding: 60px 20px;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+main {
     display: flex;
     flex-direction: column;
     gap: 40px;
