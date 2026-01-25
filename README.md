@@ -22,3 +22,10 @@ This is a client-side application. Data is not saved persistently - reloading th
 - HTML5 (Semantic)
 - CSS3 (Variables, Flexbox/Grid)
 - JavaScript (ES6+)
+
+## License & Credits
+
+This project is open source and available under the [MIT License](LICENSE).
+
+### Assets Used
+- **Icons**: [Feather Icons](https://feathericons.com/) (MIT License).
