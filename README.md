@@ -1,6 +1,6 @@
 # Grade Calculator
 
-A professional, minimalist web calculator for tracking academic grades and weighted averages.
+A simple web calculator for grades.
 
 🌐 **Live Demo:** https://olisebz.github.io/grade-calculator/
 
