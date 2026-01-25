@@ -1,129 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grade Calculator</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-        <span class="theme-icon moon-icon"></span>
-    </button>
-    
-    <div class="container">
-        <div class="header-with-logo">
-            <h1>Grade Calculator</h1>
-            <img src="favicon.svg" alt="Calculator Logo" class="logo">
-        </div>
-        
-        <div class="calculator-wrapper">
-            <div class="table-wrapper">
-                <table id="gradesTable">
-                    <thead>
-                        <tr>
-                            <th>Nr.</th>
-                            <th>Grade</th>
-                            <th>Percentage (%)</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="gradesBody">
-                        <!-- Grades will be added here -->
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="total-weight" id="totalWeightDisplay">Total weight: 0%</div>
-            
-            <button id="addGradeBtn" class="add-btn">+</button>
-            
-            <div class="result-section">
-                <div class="result">
-                    <span>Final Grade:</span>
-                    <span id="finalGrade">-</span>
-                </div>
-                <div class="target-section">
-                    <div class="target-input-group">
-                        <label for="targetGrade">Target Grade:</label>
-                        <input
-                            type="number"
-                            id="targetGrade"
-                            step="0.1"
-                            min="1"
-                            max="6"
-                            placeholder="e.g. 4.0"
-                        >
-                        <label for="targetWeight">Weight (%):</label>
-                        <input
-                            type="number"
-                            id="targetWeight"
-                            step="0.1"
-                            min="0"
-                            max="100"
-                            placeholder="100"
-                            value="100"
-                        >
-                    </div>
-                    <div class="required-grade" id="requiredGradeSection" style="display: none;">
-                        <span>Required Grade:</span>
-                        <span id="requiredGrade">-</span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Points to Grade Converter -->
-        <div class="calculator-wrapper points-converter">
-            <h2>Calculate Grade from Points</h2>
-            <div class="points-input-section">
-                <div class="input-group">
-                    <label for="maxPoints">Max Points:</label>
-                    <div class="input-with-percentage">
-                        <input
-                            type="number"
-                            id="maxPoints"
-                            step="0.1"
-                            min="0"
-                            placeholder="e.g. 100"
-                        >
-                        <span class="percentage-badge">100%</span>
+<body>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-wrapper">
+                <img src="favicon.svg" alt="Grade Calculator Logo" class="logo">
+            </div>
+            <h1>Grade Calculator</h1>
+            <p class="subtitle">Track your academic success</p>
+        </header>
+
+        <main>
+            <section class="calculator-card glass-panel">
+                <div class="table-container">
+                    <table id="gradesTable" aria-label="Grades list">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Grade</th>
+                                <th scope="col">Weight (%)</th>
+                                <th scope="col" aria-label="Actions"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="gradesBody">
+                            <!-- Grades will be added here via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="controls-area">
+                    <button id="addGradeBtn" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add Grade
+                    </button>
+                    <div class="total-weight-display" id="totalWeightDisplay">Total Weight: 0%</div>
+                </div>
+
+                <div class="results-dashboard">
+                    <div class="result-card main-result">
+                        <span class="result-label">Current Average</span>
+                        <span class="result-value" id="finalGrade">-</span>
+                    </div>
+
+                    <div class="target-section">
+                        <div class="input-group-row">
+                            <div class="input-wrapper">
+                                <label for="targetGrade">Target Grade</label>
+                                <input type="number" id="targetGrade" step="0.1" min="1" max="6" placeholder="e.g. 5.0">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="targetWeight">Next Exam Weight (%)</label>
+                                <input type="number" id="targetWeight" step="0.1" min="0" max="100" placeholder="100"
+                                    value="100">
+                            </div>
+                        </div>
+                        <div class="required-grade-result" id="requiredGradeSection" aria-hidden="true">
+                            <span class="label">You need:</span>
+                            <span class="value" id="requiredGrade">-</span>
+                        </div>
                     </div>
                 </div>
-                <div class="input-group">
-                    <label for="achievedPoints">Achieved Points:</label>
-                    <div class="input-with-percentage">
-                        <input
-                            type="number"
-                            id="achievedPoints"
-                            step="0.1"
-                            min="0"
-                            placeholder="e.g. 85"
-                        >
-                        <span class="percentage-badge" id="achievedPercentage">0%</span>
+            </section>
+
+            <section class="converter-card glass-panel">
+                <header class="section-header">
+                    <h2>Points to Grade</h2>
+                    <p>Quickly convert exam points to a grade</p>
+                </header>
+
+                <div class="converter-content">
+                    <div class="converter-inputs">
+                        <div class="input-wrapper">
+                            <label for="maxPoints">Max Points</label>
+                            <input type="number" id="maxPoints" step="0.5" min="0" placeholder="Total points">
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="achievedPoints">Achieved</label>
+                            <input type="number" id="achievedPoints" step="0.5" min="0" placeholder="Your score">
+                        </div>
+                        <div class="input-wrapper small">
+                            <label for="gradeThreshold" title="Percentage required for a 6.0">Scale (6.0 @ %)</label>
+                            <input type="number" id="gradeThreshold" step="1" min="1" max="100" value="100">
+                        </div>
+                    </div>
+
+                    <div class="converter-result">
+                        <div class="mini-stat">
+                            <span class="label">Percentage</span>
+                            <span class="value" id="achievedPercentage">-</span>
+                        </div>
+                        <div class="main-stat">
+                            <span class="label">Grade</span>
+                            <span class="value" id="calculatedGrade">-</span>
+                        </div>
                     </div>
                 </div>
-                <div class="input-group threshold-input-group">
-                    <label for="gradeThreshold">% for 6.0:</label>
-                    <input
-                        type="number"
-                        id="gradeThreshold"
-                        step="0.1"
-                        min="1"
-                        max="100"
-                        value="100"
-                        placeholder="100"
-                    >
-                </div>
-            </div>
-            <div class="points-result">
-                <span>Calculated Grade:</span>
-                <span id="calculatedGrade">-</span>
-            </div>
-        </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2026 Grade Calculator — Built by <a href="https://github.com/olisebz">@olisebz</a></p>
+        </footer>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
+
 </html>

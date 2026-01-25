@@ -1,23 +1,24 @@
 # Grade Calculator
 
-A simple web calculator for weighted grades.
+A professional, minimalist web calculator for tracking academic grades and weighted averages.
 
 🌐 **Live Demo:** https://olisebz.github.io/grade-calculator/
 
 ## Features
 
-- Calculate weighted grade averages
-- Find out what grade you need for your target
-- Convert points to grades using the formula: Grade = (Points × 5) / Max Points + 1
-- Add or delete grades
-- Clean design
+- **Weighted Averages**: Calculate your current grade based on individual assignment weights.
+- **Target Grade**: Input your desired final grade to see exactly what you need on your next exam.
+- **Points Converter**: Quickly convert exam points to a grade using the standard Swiss formula (or custom scale).
+- **Minimalist Design**: A clean, distraction-free interface with a professional green & white theme.
+- **Dark Mode**: High-contrast dark theme for late-night study sessions.
+- **Responsive**: Works perfectly on mobile and desktop.
 
 ## Note
 
-Data is not saved - if you refresh the page, your grades will be gone.
+This is a client-side application. Data is not saved persistently - reloading the page will reset your grades.
 
-## Files
+## Tech Stack
 
-- `index.html` - Main page
-- `script.js` - Calculator code
-- `style.css` - Design
+- HTML5 (Semantic)
+- CSS3 (Variables, Flexbox/Grid)
+- JavaScript (ES6+)
