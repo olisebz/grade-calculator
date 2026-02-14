@@ -227,9 +227,7 @@ const updateConverter = () => {
         elements.CALCULATED_GRADE.textContent = grade.toFixed(2);
         elements.ACHIEVED_PERCENTAGE.textContent = `${percentage.toFixed(1)}%`;
 
-        if (grade >= 4) {
-            elements.CALCULATED_GRADE.style.color = '#fff'; // On primary bg
-        }
+
     } else {
         elements.CALCULATED_GRADE.textContent = '-';
         elements.ACHIEVED_PERCENTAGE.textContent = '-';
